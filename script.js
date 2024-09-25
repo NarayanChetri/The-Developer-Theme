@@ -112,42 +112,6 @@ function showTask() {
 showTask();
 
 /* ===============================
-   * Note app Logic here  !
-   =============================== */
-
-const form = document.querySelector("#note-form");
-const input = document.querySelector("#note-input");
-const notesList = document.querySelector("#notes");
-
-form.addEventListener("submit", addNote);
-
-function addNote(e) {
-  e.preventDefault();
-
-  if (input.value === "") {
-    alert("Please enter a note.");
-  } else {
-    const li = document.createElement("li");
-    li.textContent = input.value;
-
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "Remove";
-    removeButton.className = "remove-button";
-    removeButton.addEventListener("click", removeNote);
-
-    li.appendChild(removeButton);
-    notesList.appendChild(li);
-    input.value = "";
-  }
-}
-
-function removeNote(e) {
-  const button = e.target;
-  const li = button.parentNode;
-  notesList.removeChild(li);
-}
-
-/* ===============================
    * Programming joke logic here !
    =============================== */
 
@@ -254,3 +218,23 @@ checkWidth();
 
 // Add event listener to detect window resize and apply changes
 window.addEventListener("resize", checkWidth);
+
+
+/* ===============================
+   * Clock Logic here !
+   =============================== */
+
+
+
+function updateClock() {
+  const timeElement = document.getElementById('time');
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  
+  timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
