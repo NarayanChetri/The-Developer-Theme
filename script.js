@@ -146,7 +146,7 @@ fetchProgrammingJoke();
 
 
 /* ===============================
-   * Ask Question Logic here !
+   * Ask Question Logic with limit here !
    =============================== */
 
    function fetchQuestion(retries = 3) {
@@ -191,18 +191,57 @@ fetchProgrammingJoke();
       });
   }
   
+  function getQuestionCount() {
+    const storedData = localStorage.getItem("questionCountData");
+    const today = new Date().toDateString();
+  
+    if (storedData) {
+      const { date, count } = JSON.parse(storedData);
+      if (date === today) {
+        return count;
+      }
+    }
+    return 0;
+  }
+  
+  function incrementQuestionCount() {
+    const today = new Date().toDateString();
+    const currentCount = getQuestionCount();
+    localStorage.setItem(
+      "questionCountData",
+      JSON.stringify({ date: today, count: currentCount + 1 })
+    );
+  }
+  
+  function canAskQuestion() {
+    return getQuestionCount() < 5;
+  }
+  
   // Ensure the question is fetched on page load and when clicking 'Change Question'
   document.addEventListener("DOMContentLoaded", function () {
-    // Call fetchQuestion immediately when the page is loaded
-    fetchQuestion();
+    if (canAskQuestion()) {
+      fetchQuestion();
+    } else {
+      document.getElementById("question").innerText =
+        "You have reached your limit of 5 questions for today. Come back tomorrow!";
+    }
   
-    // Handle 'Change Question' button click
     document
       .getElementById("changeQuestionBtn")
       .addEventListener("click", function () {
-        fetchQuestion();
+        if (canAskQuestion()) {
+          incrementQuestionCount();
+          fetchQuestion();
+        } else {
+          document.getElementById("question").innerText =
+            "You have reached your limit of 5 questions for today. Come back tomorrow!";
+        }
       });
   });
+  
+/* ===============================
+   * min width 500px !
+   =============================== */
   
   // Function to change text when width is smaller than 500px
 function checkWidth() {
@@ -224,17 +263,26 @@ window.addEventListener("resize", checkWidth);
    * Clock Logic here !
    =============================== */
 
-
-
-function updateClock() {
-  const timeElement = document.getElementById('time');
-  const now = new Date();
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
+   function updateClock() {
+    const timeElement = document.getElementById('time');
+    const now = new Date();
+    
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
   
-  timeElement.textContent = `${hours}:${minutes}:${seconds}`;
-}
-
-setInterval(updateClock, 1000);
-updateClock();
+    // Convert to 12-hour format
+    hours = hours % 12;
+    hours = hours ? hours : 12; // If hours = 0, set to 12
+    hours = String(hours).padStart(2, '0');
+  
+    const day = now.toLocaleString('default', { weekday: 'long' });
+    const date = now.getDate();
+    const month = now.toLocaleString('default', { month: 'long' });
+  
+    timeElement.textContent = `${hours}:${minutes} ${ampm} | ${date} ${month}, ${day}`;
+  }
+  
+  setInterval(updateClock, 1000);
+  updateClock();
+  
