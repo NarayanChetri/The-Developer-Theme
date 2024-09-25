@@ -1,0 +1,388 @@
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui;
+}
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Background of the scrollbar track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Scrollbar thumb (the part you drag) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg,purple,orange);
+  border-radius: 10px;
+
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  color: white;
+  position: relative;
+  overflow: hidden; /* Prevent scrollbars */
+}
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire screen */
+}
+#searchForm {
+  position: absolute;
+  bottom: 5%;
+  z-index: 1;
+  width: 700px;
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+#searchQuery {
+  width: 600px;
+  height: 40px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  background: transparent;
+  outline: none;
+  border: 2px dotted white;
+  color: white;
+}
+#search {
+  position: relative;
+  width: 80px;
+  padding: 5px;
+  border-radius: 10px;
+  outline: none;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.685);
+  backdrop-filter: blur(5px);
+  cursor: pointer; /* Change cursor to pointer */
+}
+#search:hover
+{
+  background: rgba(255, 166, 0, 0.493);
+}
+#randomJoke {
+  position: absolute;
+  z-index: 1111;
+  color: white;
+  bottom: 5%;
+  right: 1%;
+width: 400px;
+  max-width: 20%;
+  font-size: 13px;
+  margin-left: 10px;
+}
+#mainText {
+  font-family: "DotGothic16", sans-serif;
+  position: absolute;
+  top: 0%;
+  color: white;
+  z-index: 1;
+  font-size: 50px;
+}
+.todo-app {
+  width: 400px;
+  max-width: 45%;
+  max-height: 300px;
+  background: rgba(255, 255, 255, 0.116);
+  backdrop-filter: blur(5px);
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  left: 2%;
+  top: 10%;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px,
+    rgba(255, 255, 255, 0.3) 0px 30px 60px -30px,
+    rgba(255, 255, 255, 0.35) 0px -2px 6px 0px inset;
+    overflow: auto;
+}
+.todo-app h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.todo-app h2 img {
+  width: 30px;
+  position: relative;
+  margin-left: 10px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  margin: 30px 10px;
+  border-radius: 20px;
+  background: rgba(216, 210, 255, 0.699);
+}
+input {
+  flex: 1;
+  border-radius: 20px;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  outline: none;
+  font-weight: 600;
+}
+
+button {
+  padding: 10px;
+  width: 5em;
+  background: rgb(172, 199, 22);
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
+
+ul li {
+  position: relative;
+  list-style: none;
+  font-size: 17px;
+  padding: 12px 40px 20px 60px;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+ul li::before {
+  content: "";
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  border-radius: 20%;
+  background-image: url(unchecked.png);
+  background-size: cover;
+  background-position: center;
+  top: 12px;
+  left: 8px;
+}
+ul li.checked {
+  color: #555;
+  text-decoration: line-through;
+}
+ul li.checked::before {
+  background-image: url(checked.png);
+}
+ul li span {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  font-size: 22px;
+  color: red;
+  line-height: 16px;
+  text-align: center;
+  scale: 1.5;
+  border-radius: 50%;
+}
+ul li span:hover {
+  background: rgba(0, 0, 0, 0.116);
+}
+.container {
+  width: 400px;
+  max-width: 45%;
+  background: rgba(255, 255, 255, 0.116);
+  backdrop-filter: blur(5px);
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 20px;
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 50px 100px -20px,
+    rgba(255, 255, 255, 0.3) 0px 30px 60px -30px,
+    rgba(255, 255, 255, 0.35) 0px -2px 6px 0px inset;
+    max-height: 400px;
+    overflow: auto;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+#note-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#note-form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border: 2px solid white;
+  color: white;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 18px;
+  background: lightgray;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+button[type="submit"]:hover {
+  background: darkgray;
+  color: white;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 10px;
+  background: lightgray;
+  border-radius: 5px;
+  overflow: auto;
+  color: black;
+}
+
+.remove-button {
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 10px;
+  width: 80px;
+  height: 30px;
+}
+
+#quiz-container {
+  background-color: rgba(8, 0, 0, 0.103);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  max-width: 40%;
+  width: 400px;
+  margin: 20px auto;
+  position: absolute;
+  z-index: 1;
+  right: 1%;
+  border: 2px dotted rgba(255, 166, 0, 0.24);
+}
+#quiz-container h3 {
+  width: 100%;
+  text-align: center;
+  color: orange;
+}
+
+p#question {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+ul#options {
+  list-style: none;
+  padding: 0;
+}
+ul#options li::before {
+  content: none;
+}
+
+ul#options li {
+  background-color: #e0e0e0;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul#options li:hover {
+  background-color: #d4d4d49d;
+}
+
+#result {
+  font-size: 1.1em;
+  margin-top: 15px;
+  color: #007bff;
+}
+/* Button styling */
+#changeQuestionBtn {
+  margin-top: 5px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+}
+
+#changeQuestionBtn:hover {
+  background-color: #0056b3;
+}
+#lastText
+{
+    position: absolute;
+    z-index: 1;
+    bottom: 0.5%;
+    left: 1%;
+    color: red;
+    font-family: "DotGothic16", sans-serif;
+    text-decoration: none;
+  transition: 0.2s ease;
+
+}
+#lastText:hover
+{
+    color: yellow;
+}
+@media (max-width:500px)
+{
+  .todo-app
+  {
+    display: none;
+
+  }
+  .container
+  {
+    display: none;
+
+  }
+#quiz-container
+{
+  display: none;
+}
+#randomJoke
+{
+  display: none;
+}
+#searchForm
+{
+  display: none;
+}
+#mainText 
+{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: black;
+  background: aqua;
+}
+}

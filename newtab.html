@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Tab</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- ============================
+     * google fonts import 
+   ============================ -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1 id="mainText">The Developer Theme</h1>
+
+    <!-- ============================
+     * Random joke !
+   ============================ -->
+
+    <div id="randomJoke"></div>
+    <!-- Element for displaying jokes -->
+
+    <!-- ============================
+     * Random Question !
+   ============================ -->
+
+    <div id="quiz-container">
+      <h3>Question of the tab !</h3>
+      <p id="question">Loading question...</p>
+      <ul id="options"></ul>
+      <p id="result"></p>
+      <button id="changeQuestionBtn">Change Question</button>
+    </div>
+
+    <!-- ============================
+     * Random image !
+   ============================ -->
+
+    <img id="randomImage" src="" alt="Random Image" />
+
+    <!-- ============================
+     * google search !
+   ============================ -->
+
+    <form id="searchForm">
+      <input type="text" id="searchQuery" placeholder="Search Google..." />
+      <button type="submit" id="search">Search</button>
+    </form>
+
+    <!-- ============================
+     * to do app !
+   ============================ -->
+
+    <div class="todo-app">
+      <h2>To-Do List <img src="todo.png" alt="icon" /></h2>
+      <div class="row">
+        <input type="text" id="input-box" placeholder="Add Your Text" />
+        <button onclick="addTask()">Add</button>
+      </div>
+      <ul id="list-container">
+        <!-- <li class="checked">Task 1</li>
+        <li>Task 2</li>
+        <li>Task 3</li> -->
+      </ul>
+    </div>
+
+    <!-- ============================
+      notes app !
+   ============================ -->
+
+    <div class="container">
+      <h1>Notes here</h1>
+      <form id="note-form">
+        <input type="text" id="note-input" placeholder="Enter a note..." />
+        <button type="submit">Add</button>
+      </form>
+      <ul id="notes"></ul>
+    </div>
+
+
+    <a href="https://www.instagram.com/naaruchetri?igsh=YzAwZjE1ZTI0Zg==" id="lastText">Developed by Narayan Chetri</a>
+    <script src="script.js"></script>
+  </body>
+</html>
