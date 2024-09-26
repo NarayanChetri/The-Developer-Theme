@@ -6,7 +6,7 @@
   "chrome_url_overrides": {
     "newtab": "newtab.html"
   },
-  "permissions": ["storage", "activeTab", "identity","https://www.googleapis.com/"],
+  "permissions": ["storage", "activeTab"],
   "icons": {
     "48": "icon.png"
   }

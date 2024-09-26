@@ -135,25 +135,27 @@ width: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 20px;
   margin: 30px 10px;
   border-radius: 20px;
-  background: rgba(216, 210, 255, 0.699);
+  background:rgba(255, 255, 255, 0.062);
 }
-input {
-  flex: 1;
-  border-radius: 20px;
-  border: none;
-  background: transparent;
-  padding: 10px;
-  outline: none;
-  font-weight: 600;
+#input-box {
+height: 32px;
+border-radius: 10px;
+outline: none;
+border: none;
+background: transparent;
+text-align: center;
+flex: 1;
+margin: 0;
+padding: 0;
 }
 
 .todo-app button {
   padding: 10px;
   width: 5em;
-  background: rgb(172, 199, 22);
+  background: rgb(217, 255, 0);
+  color: black;
   border: none;
   border-radius: 20px;
   font-weight: bold;
@@ -439,9 +441,10 @@ border: none;
 #welcomeMessage
 {
   position: absolute;
+  font-size: 25px;
   z-index: 1;
   top: 15%;
-  right: 10%;
+  right: 5%;
   font-family: 'MyCustomFont';
   color: red;
   margin-bottom: 30px;
