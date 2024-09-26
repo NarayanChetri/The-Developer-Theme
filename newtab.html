@@ -27,16 +27,29 @@
     <h1 id="mainText">The Developer Theme</h1>
 
 
-    <!-- ============================
- * User Name Input ! 
- ============================ -->
- <div class="username-container">
+<!-- ============================
+* User Name Input ! 
+============================ -->
+<div class="username-container">
   <input type="text" id="usernameInput" placeholder="Enter your name" />
   <button id="saveUsernameBtn">Save</button>
-  <button id="resetUsernameBtn">Reset</button>
 </div>
 <p id="welcomeMessage"></p>
 
+<!-- ============================
+* setting! 
+============================ -->
+
+<div class="settings-container">
+  <img src="settings.png" id="settingsIcon" alt="Settings" />
+  <div id="settingsMenu" style="display: none;">
+    <ul>
+      <li><button id="resetUsernameBtn">Reset Name</button></li>
+      <li><button id="contact"><a href="contact.html" >Contact</a></button></li>
+      
+    </ul>
+  </div>
+</div>
 
 
 

@@ -156,28 +156,9 @@ fetchProgrammingJoke();
       .then((response) => response.json())
       .then((data) => {
         const question = data.results[0];
-        document.getElementById("question").innerText = question.question;
-  
-        const optionsList = document.getElementById("options");
-        optionsList.innerHTML = ""; // Clear previous options
-  
-        const allOptions = [
-          ...question.incorrect_answers,
-          question.correct_answer,
-        ].sort(() => Math.random() - 0.5);
-  
-        allOptions.forEach((option) => {
-          const li = document.createElement("li");
-          li.innerText = option;
-          li.addEventListener("click", () => {
-            const resultText =
-              option === question.correct_answer ? "Correct!" : "Incorrect!";
-            document.getElementById("result").innerText = resultText;
-          });
-          optionsList.appendChild(li);
-        });
-  
-        document.getElementById("result").innerText = ""; // Reset result on new question
+        // Save question to localStorage
+        localStorage.setItem('currentQuestion', JSON.stringify(question));
+        displayQuestion(question);
       })
       .catch((error) => {
         if (retries > 0) {
@@ -189,6 +170,31 @@ fetchProgrammingJoke();
             "Error loading question. Please try again.";
         }
       });
+  }
+  
+  function displayQuestion(question) {
+    document.getElementById("question").innerText = question.question;
+  
+    const optionsList = document.getElementById("options");
+    optionsList.innerHTML = ""; // Clear previous options
+  
+    const allOptions = [
+      ...question.incorrect_answers,
+      question.correct_answer,
+    ].sort(() => Math.random() - 0.5);
+  
+    allOptions.forEach((option) => {
+      const li = document.createElement("li");
+      li.innerText = option;
+      li.addEventListener("click", () => {
+        const resultText =
+          option === question.correct_answer ? "Correct!" : "Incorrect!";
+        document.getElementById("result").innerText = resultText;
+      });
+      optionsList.appendChild(li);
+    });
+  
+    document.getElementById("result").innerText = ""; // Reset result on new question
   }
   
   function getQuestionCount() {
@@ -219,7 +225,10 @@ fetchProgrammingJoke();
   
   // Ensure the question is fetched on page load and when clicking 'Change Question'
   document.addEventListener("DOMContentLoaded", function () {
-    if (canAskQuestion()) {
+    const savedQuestion = localStorage.getItem('currentQuestion');
+    if (savedQuestion) {
+      displayQuestion(JSON.parse(savedQuestion));
+    } else if (canAskQuestion()) {
       fetchQuestion();
     } else {
       document.getElementById("question").innerText =
@@ -290,3 +299,51 @@ window.addEventListener("resize", checkWidth);
 
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const usernameInput = document.getElementById('usernameInput');
+const saveUsernameBtn = document.getElementById('saveUsernameBtn');
+const welcomeMessage = document.getElementById('welcomeMessage');
+const settingsIcon = document.getElementById('settingsIcon');
+const settingsMenu = document.getElementById('settingsMenu');
+const resetUsernameBtn = document.getElementById('resetUsernameBtn'); // Reset button in the settings menu
+
+// Check if username is stored in localStorage
+const savedUsername = localStorage.getItem('username');
+if (savedUsername) {
+  welcomeMessage.innerHTML = `Welcome, <span class="username">${savedUsername}</span>!`;
+  usernameInput.style.display = 'none';
+  saveUsernameBtn.style.display = 'none';
+}
+
+// Save username to localStorage
+saveUsernameBtn.addEventListener('click', () => {
+  const username = usernameInput.value;
+  if (username) {
+    localStorage.setItem('username', username); // Store the username
+    welcomeMessage.innerHTML = `Welcome, <span class="username">${username}</span>!`;
+    // Hide input and save button
+    usernameInput.style.display = 'none';
+    saveUsernameBtn.style.display = 'none';
+  }
+});
+
+// Reset username via settings menu
+resetUsernameBtn.addEventListener('click', () => {
+  localStorage.removeItem('username'); // Clear the stored username
+  welcomeMessage.innerHTML = '';
+  usernameInput.style.display = 'inline';
+  saveUsernameBtn.style.display = 'inline';
+  usernameInput.value = ''; // Clear the input field
+  settingsMenu.style.display = 'none'; // Close settings menu after reset
+});
+
+// Toggle settings menu visibility
+settingsIcon.addEventListener('click', () => {
+  settingsMenu.style.display = settingsMenu.style.display === 'none' ? 'block' : 'none';
+});
+
+// Close settings menu when clicking outside of it
+document.addEventListener('click', (event) => {
+  if (!settingsIcon.contains(event.target) && !settingsMenu.contains(event.target)) {
+    settingsMenu.style.display = 'none';
+  }
+});
